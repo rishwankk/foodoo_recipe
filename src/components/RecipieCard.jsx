@@ -1,9 +1,10 @@
 import React from 'react';
 import Button from './Button';
+import { FaLeaf } from 'react-icons/fa';
 
 const Card = ({ image, title, difficulty, time, calories, foodType, rating, icon }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center w-56 mt-12 hover:scale-110">
+    <div className="bg-white rounded-lg shadow-md p-4 flex flex-col items-center w-56 mt-12 hover:scale-110 ">
       <img
         src={image}
         alt={title}
@@ -15,16 +16,15 @@ const Card = ({ image, title, difficulty, time, calories, foodType, rating, icon
       </span>
       <div className="flex justify-between w-full text-gray-600 text-sm mt-4 mb-2">
         <div className="flex flex-col items-center">
-          <span>{time} </span>
+          <span className='font-bold'>{time} </span>
           <span>Min</span>
         </div>
         <div className="flex flex-col items-center">
-          <span>{calories} </span>
+          <span className='font-bold'>{calories} </span>
           <span>Kcal</span>
         </div>
         <div className="flex flex-col items-center">
-          {/* Directly render the icon */}
-          {icon}
+          <FaLeaf />
           <span>{foodType}</span>
         </div>
       </div>
@@ -43,7 +43,6 @@ const Card = ({ image, title, difficulty, time, calories, foodType, rating, icon
   );
 };
 
-// Helper function to get difficulty color
 const getDifficultyColor = (difficulty) => {
   switch (difficulty) {
     case 'Beginner':

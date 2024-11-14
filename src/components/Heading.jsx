@@ -19,7 +19,6 @@ const Heading = () => {
           <p className='opacity-30 text-sm'>New Recipes</p>
         </div>
         
-        {/* Vertical Border */}
         <div className="border-l-2 border-black h-16 opacity-30"></div> {/* Added this div for vertical line */}
         
         <div className="flex flex-col items-center">

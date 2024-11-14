@@ -40,13 +40,13 @@ const Home = () => {
         <div className="text-center text-xl text-gray-600">Loading...</div>
       ) : (
         <>
-          {/* Show a message when no results are found after search */}
+    
           {filteredRecipes.length === 0 ? (
             <div className="text-center text-xl text-gray-600">
               No items found for "{searchQuery}"
             </div>
           ) : (
-            <div className="grid grid-cols-4 gap-1">
+            <div className="grid  gap-1 grid-cols-4">
               {filteredRecipes.map((recipe,index) => (
                 <EnhancedRecipieCard
                   key={recipe.id}

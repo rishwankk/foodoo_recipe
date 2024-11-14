@@ -29,7 +29,6 @@ const withAdditionalData = (Component) => {
       );
     }
 
-    // For other items, render the normal RecipieCard component
     return <Component {...props} />;
   };
 };

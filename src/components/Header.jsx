@@ -1,14 +1,12 @@
 import React from 'react';
 import Logo from "../assets/logo.jpeg";
 import { BiSortAlt2 } from "react-icons/bi";
+import { BiSearch } from "react-icons/bi";
 import Button from './Button';
 
 const Header = ({ setSearchQuery }) => {
- 
 
- 
   const handleSearchChange = (event) => {
-
     setSearchQuery(event.target.value);
   };
 
@@ -18,14 +16,14 @@ const Header = ({ setSearchQuery }) => {
         <img src={Logo} className="rounded-tl-xl" alt="Logo" />
       </div>
       <div className="flex items-center justify-between w-full">
-       
-        <div className="flex w-full px-5">
+        <div className="flex w-full px-5 relative">
           <input
-            className='bg-[#FCF4F1] shadow-xl p-2 rounded w-80'
+            className='bg-[#FCF4F1] shadow-xl p-2 rounded w-80 pl-10' 
             type="text"
-            placeholder="Search..."
-            onChange={handleSearchChange} 
+            placeholder="Enter your search request here..."
+            onChange={handleSearchChange}
           />
+          <BiSearch className="absolute left-8 top-5 transform -translate-y-1/2 text-gray-600" />
         </div>
       
         <div className="flex items-center space-x-4 px-5 pr-9">
