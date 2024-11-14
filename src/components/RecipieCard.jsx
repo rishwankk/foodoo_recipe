@@ -36,7 +36,7 @@ const Card = ({ image, title, difficulty, time, calories, foodType, rating, icon
         ))}
       </div>
       <Button
-        className={`mt-4 py-2 border-t-[1px] border-black text-black rounded-lg shadow-xl w-full hover:bg-[#DB3529]`}
+        className={`mt-4 py-2 border-t-[1px] font-mono border-black text-black rounded-lg shadow-xl w-full hover:bg-[#DB3529] hover:text-white `}
         label="Start Cooking"
       />
     </div>

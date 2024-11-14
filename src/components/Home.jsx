@@ -1,51 +1,69 @@
 import React, { useEffect, useState } from 'react';
-import Heading from './Heading';
+import Header from './Header';
 import RecipieCard from './RecipieCard';
 import mockData from '../constants/mockdata';
+import Heading from './Heading';
+import CardHoc from "./CardHoc";
+import withAdditionalData from './CardHoc';
+
 
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
-  const [loading, setLoading] = useState(true); // State to track loading status
+  const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
+
 
   useEffect(() => {
-    // Simulate an API call with a timeout
     const fetchRecipes = () => {
       setTimeout(() => {
-        setRecipes(mockData); // Set the mock data after a delay
-        setLoading(false); // Set loading to false once data is fetched
-      }, 1000); // Delay of 1000ms (1 second)
+        setRecipes(mockData); 
+        setLoading(false); 
+      }, 1000); 
     };
 
     fetchRecipes();
   }, []);
 
+  const filteredRecipes = recipes.filter((recipe) =>
+    recipe.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+  const EnhancedRecipieCard = withAdditionalData(RecipieCard);
   return (
     <div className="bg-[#FCF4F1] ml-5">
-      <div>
+      <Header setSearchQuery={setSearchQuery} /> {/* Pass search query handler to Header */}
+      
+      <div className="mt-5">
         <Heading />
       </div>
-
-      {/* Show a loading message or spinner if loading */}
+      
       {loading ? (
         <div className="text-center text-xl text-gray-600">Loading...</div>
       ) : (
-        <div className="grid grid-cols-4 gap-4">
-          {recipes.map((recipe) => (
-            <RecipieCard
-              key={recipe.id} // Use a unique key for each item
-              image={recipe.image}
-              title={recipe.title}
-              difficulty={recipe.difficulty}
-              time={recipe.time}
-              calories={recipe.calories}
-              foodType={recipe.foodType}
-              rating={recipe.rating}
-              icon={recipe.icon}
-
-             
-            />
-          ))}
-        </div>
+        <>
+          {/* Show a message when no results are found after search */}
+          {filteredRecipes.length === 0 ? (
+            <div className="text-center text-xl text-gray-600">
+              No items found for "{searchQuery}"
+            </div>
+          ) : (
+            <div className="grid grid-cols-4 gap-1">
+              {filteredRecipes.map((recipe,index) => (
+                <EnhancedRecipieCard
+                  key={recipe.id}
+                  index={index}
+                  image={recipe.image}
+                  title={recipe.title}
+                  difficulty={recipe.difficulty}
+                  time={recipe.time}
+                  calories={recipe.calories}
+                  foodType={recipe.foodType}
+                  rating={recipe.rating}
+                  icon={recipe.icon}
+                />
+              ))}
+            </div>
+          )}
+        </>
       )}
     </div>
   );
